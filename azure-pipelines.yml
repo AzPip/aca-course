@@ -11,6 +11,9 @@ trigger:
 resources:
 - repo: self
 
+pool:
+  name: SelfHosted
+
 variables:
   IMAGE_NAME: houssemdocker/album-backend-api
   CONTAINERAPPS_APP: album-backend-api
@@ -24,8 +27,6 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: ubuntu-latest
     steps:
 
     - task: Docker@2
@@ -49,8 +50,6 @@ stages:
   jobs:
   - job: Deploy
     displayName: Deploy
-    pool:
-      vmImage: ubuntu-latest
     steps:
 
     - task: AzureContainerApps@1
